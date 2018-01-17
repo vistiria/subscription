@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     registrations:  'registrations',
     sessions: 'sessions'
   }
+
+  resources :contributions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
