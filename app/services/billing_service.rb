@@ -6,7 +6,7 @@ class BillingService
   def call
     {
       success: true,
-      message: 'subscription created'
+      message: 'subscription created',
       code:    HTTP_OK
     }
   end

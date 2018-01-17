@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     sessions: 'sessions'
   }
 
-  resources :contributions
+  get '/subscription_list', to: 'contributions#index'
+  post '/create_monthly_subscription', to: 'contributions#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

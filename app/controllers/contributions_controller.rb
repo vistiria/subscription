@@ -10,6 +10,20 @@ class ContributionsController < ApplicationController
     end
   end
 
+  def index
+    if current_user.subscription_exists?
+      subscriptions = current_user.contributions.order(date: :asc).pluck(:date)
+      next_subscription = subscriptions.pop
+
+      render json: {
+        subscription_dates: subscriptions,
+        next_billing_date: next_subscription
+      }
+    else
+      render_subscription_error('subscription doesn\'t exist', HTTP_UNPROCESSABLE_ENTITY)
+    end
+  end
+
   private
 
   def render_subscription_error(message, code)
