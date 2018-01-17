@@ -1,0 +1,17 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+development:
+  CARD_NUMBER_KEY: 9b432c3ac5e4ee1090156c9fefebf026a14e6d1fad52eecb8b02cb0589f34b303818e1eed5d3700e4ea6e15e5d30cc0159e2e767ae9d72f3bc858c69cf53c28b
+production:
+  CARD_NUMBER_KEY: 45dbafd90c6755b3b53b62a75d16be6d160a944bf515d9cbed8d2d37c9bfdfd27004b915db034c8c070b1d9dc3000fb5dcf4abc7cdf1c251a9ac005b71da6321
+test:
+  CARD_NUMBER_KEY: 8edcea7c4f1a8930afe82c0f8a05f4a9ab70310d66d3aa0527dd8f42e7d97cf27261b06e93a37f5c9d1439b22d800fc91d4e366dbb8ff50a79568a08a54a0882
