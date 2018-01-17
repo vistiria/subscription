@@ -24,7 +24,7 @@ class BillingService
   private
 
   def parse_billing_response(response)
-    paid = response["paid"]
+    paid = response[:paid]
     {
       success: paid,
       message: paid ? 'subscription created' : 'insufficient funds',
