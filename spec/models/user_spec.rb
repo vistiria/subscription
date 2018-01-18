@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when user is subscribed' do
-    let(:user) { FactoryBot.build(:user, :with_subscription) }
+      let(:user) { FactoryBot.build(:user, :with_subscription) }
       it 'returns true' do
         expect(user.subscription_exists?).to be true
       end

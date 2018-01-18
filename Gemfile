@@ -31,6 +31,7 @@ gem 'attr_encrypted'
 gem 'figaro'
 gem 'whenever', require: false
 gem 'httparty'
+gem 'rubocop', '~> 0.52.1', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

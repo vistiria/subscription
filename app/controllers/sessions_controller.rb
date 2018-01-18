@@ -1,11 +1,9 @@
-  class SessionsController < DeviseTokenAuth::SessionsController
+class SessionsController < DeviseTokenAuth::SessionsController
+  protected
 
-    protected
-
-    def render_create_success
-      render json: {
-        status: 'success'
-      }
-    end
+  def render_create_success
+    render json: {
+      status: 'success'
+    }
   end
-  
+end

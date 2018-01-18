@@ -1,5 +1,4 @@
 class RegistrationsController < DeviseTokenAuth::RegistrationsController
-
   protected
 
   def render_create_success

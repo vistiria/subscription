@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'Gemfile'
+    - 'lib/**/*'
+    - 'Rakefile'
+
+Style/Documentation:
+  Enabled: false
