@@ -11,7 +11,9 @@ Ruby on Rails: 5.1.4
 Node.js  
 PostgreSQL
 
-System: Linux, Mac OS
+System
+------
+Linux, Mac OS
 
 
 Instructions for Linux
