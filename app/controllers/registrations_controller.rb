@@ -5,7 +5,7 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
   def render_create_success
     render json: {
       status: 'success',
-      data:   'user has been created, please log in'
+      data:   'user has been created, please sign in'
     }
   end
 end

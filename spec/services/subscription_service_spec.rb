@@ -10,7 +10,7 @@ RSpec.describe SubscriptionService do
       let!(:subs_pending) { FactoryBot.create(:contribution, :pending, date: 1.month.from_now, user: user) }
       let(:expected) { { success: false, message: 'subscription already exists', code: HTTP_UNPROCESSABLE_ENTITY } }
 
-      it 'returns expected values' do
+      it 'returns already exists' do
         expect do
           result = service.create_subscription(user)
           expect(result).to eq expected
@@ -22,7 +22,7 @@ RSpec.describe SubscriptionService do
       let(:res) { { success: true, message: 'subscription created', code: HTTP_OK } }
 
       let!(:user) { FactoryBot.create(:user) }
-      it 'returns expected values' do
+      it 'returns subscription created' do
         allow_any_instance_of(BillingService).to receive(:call).and_return(res)
         expect do
           service.create_subscription(user)
