@@ -61,7 +61,10 @@ cd subscription/
 bin/rake db:create db:schema:load
 bundle exec thin start -p 3001 --ssl --ssl-key-file ~/.ssl/localhost.key --ssl-cert-file ~/.ssl/localhost.crt
 
-# run billing application from lib/app
+# run billing application from lib/billing_gateway
+cd lib/billing_gateway/
+bundle install
+ruby main.rb
 ```
 
 How it works
@@ -75,24 +78,52 @@ Register with email, password, first name, last name and credit card number:
 ```
 curl -i -k --header "Content-Type: application/json" --request POST --data '{  "password": "test001_password", "email": "test001@gmail.com", "first_name": "Iva", "last_name": "Novak", "card_number": "4485057923557660"}' https://localhost:3001/auth/
 ```
+result:
+```
+{"status":"success","data":"user has been created, please sign in"}
+```
+  
 Sign in with email and password:  
 ```
 curl -i -k --header "Content-Type: application/json" --request POST --data '{  "email": "test001@gmail.com","password": "test001_password"}' https://localhost:3001/auth/sign_in
 ```
+result:
+```
+{"status":"success"}
+```
+  
 Create subscription, you will be charged 100$ per month.  
 Copy access-token, client, uid, and expiry from the last response HTTP-header, and paste them to the following request:  
 ```
 curl -i -k -H "Content-Type: application/json" -H "access-token: OfsE90MgKCvYviqhe2ghYg" -H "client: 1v4h0wgm9aAhAwJsKhNkvA" -H "expiry: 1517174947" -H "uid: test001@gmail.com" --request POST https://localhost:3001/create_monthly_subscription
 ```
-If subscription exists, you can list all valid subscriptions and next billing date.  
+results:
+```
+{"status":"success","data":"subscription created"}
+{"status":"error","errors":"insufficient funds"}
+{"status":"error","errors":"subscription already exists"}
+{"status":"error","errors":"subscription failed, could not connect to billing service"}
+```
+  
+You can list all valid subscriptions and next billing date.  
 Copy access-token, client, uid, and expiry from the last response HTTP-header, and paste them to the following request:  
 ```
 curl -i -k -H "Content-Type: application/json" -H "access-token: gM4Eu9CI00nf2WPu6Wyp2w" -H "client: 1v4h0wgm9aAhAwJsKhNkvA" -H "expiry: 1517250555" -H "uid: test001@gmail.com" --request GET https://localhost:3001/subscription_list
 ```
+results:
+```
+{"subscription_dates":["2018-01-18"],"next_billing_date":"2018-02-18"}
+{"status":"error","errors":"subscription doesn't exist"}
+```
+  
 Sign out  
 Copy access-token, client, uid, and expiry from the last response HTTP-header, and paste them to the following request:  
 ```
 anna@rail:~/subscription1/subscription1$ curl -i -k -H "Content-Type: application/json" -H "access-token: rEAGtw1FVtXKzkDtbXC7Kw" -H "client: 1v4h0wgm9aAhAwJsKhNkvA" -H "expiry: 1517270643" -H "uid: test001@gmail.com" --request DELETE https://localhost:3001/auth/sign_out
+```
+result:
+```
+{"success":true}
 ```
 
 Charging
